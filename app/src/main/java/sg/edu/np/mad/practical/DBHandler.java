@@ -17,6 +17,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "CREATE TABLE User (Username TEXT, Description TEXT, Id INTEGER, Followed " +
                 "TEXT)";
+        // Can create column variable here and assign ID, so getcolumnindex is easier
         // Find db, if not exist, will create one
         db.execSQL(sql);
     }
@@ -45,20 +46,24 @@ public class DBHandler extends SQLiteOpenHelper {
         String query = "SELECT * FROM User";
 
         Cursor c = db.rawQuery(query, null);
+
         while (c.moveToNext())
         {
-            String name = c.getString(c.getColumnIndex("Username"));
+            // From one row to the other
+            // Get all data in one row
+            User user = new User();
 
+            user.Name = c.getString(c.getColumnIndexOrThrow("Username"));
+            user.Description = c.getString(c.getColumnIndexOrThrow("Description"));
+            user.Id = c.getInt(c.getColumnIndexOrThrow("Id"));
+            user.Followed = Boolean.parseBoolean(
+                    c.getString(c.getColumnIndexOrThrow( "Followed")));
 
-            try {
-                User user = new User();
-
-            }
-            catch (Exception e) {
-
-            }
+            userArrayList.add(user);
         }
 
-        return new ArrayList<User> ();
+        c.close();
+        db.close();
+        return userArrayList;
     }
 }

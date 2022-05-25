@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /* // When run first time, will display NOT FOUND! (as the sharedpref just generated
-        // without values. After putString and apply, data is in the sharedpref file, hence
-        // will display Hello World!
+        /* When run first time, will display NOT FOUND! (as the sharedpref just generated
+           without values. After putString and apply, data is in the sharedpref file, hence
+           will display Hello World!
+
         SharedPreferences pref = getSharedPreferences("P03", MODE_PRIVATE);
         // Search for key, if not found, will fallback to defaultValue and display notFound
         String text = pref.getString("KEY", "NOT FOUND!");

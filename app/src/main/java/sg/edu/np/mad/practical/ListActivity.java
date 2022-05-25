@@ -22,6 +22,8 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        DBHandler dbhandler = new DBHandler(this);
+
         // Generate 20 user objects with randomized name, description and boolean Follow.
         for (int i = 0; i < 20; i++) {
             Random random = new Random();
@@ -30,7 +32,12 @@ public class ListActivity extends AppCompatActivity {
             userObject.Description = Integer.toString(random.nextInt(999999999));
             userObject.Followed = random.nextBoolean();
 
+            // Id is a running number starting from 1
+            userObject.Id = i + 1;
+
             userModels.add(userObject);
+            //dbhandler.insertUser(userObject);
+
         }
 
         RecyclerView recyclerView = findViewById(R.id.ListRecyclerView);
