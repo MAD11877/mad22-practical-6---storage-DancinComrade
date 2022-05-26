@@ -44,17 +44,21 @@ public class MainActivity extends AppCompatActivity {
             btn.setText("FOLLOW");
         }
 
+        DBHandler dbHandler = new DBHandler(this);
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (userObject.Followed) {
                     userObject.Followed = false;
+                    dbHandler.updateUser(userObject);
                     btn.setText("FOLLOW");
                     Toast.makeText(getApplicationContext(), "Unfollowed", Toast.LENGTH_SHORT).show();
 
                 }
                 else {
                     userObject.Followed = true;
+                    dbHandler.updateUser(userObject);
                     btn.setText("UNFOLLOW");
                     Toast.makeText(getApplicationContext(), "Followed", Toast.LENGTH_SHORT).show();
                 }

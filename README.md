@@ -7,7 +7,7 @@ Follow the instructions below to complete your app.
 <img width="137" alt="user_cd" src="https://user-images.githubusercontent.com/31364147/114372223-e21dff00-9bb3-11eb-80fe-28d712cbc170.png">
 <img width="698" alt="p6_db" src="https://user-images.githubusercontent.com/31364147/114372212-e0543b80-9bb3-11eb-9dec-092610bb346d.PNG">
 
-2.	Create a `getUspecify acitivity to startsers()` function in your db handler. This function will returns all the user information from the database as a List.
+2.	Create a `getUsers()` function in your db handler. This function will returns all the user information from the database as a List.
 
     Modify your `RecyclerView` so that it is pre-populated with information from the database only.
 

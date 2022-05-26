@@ -24,20 +24,24 @@ public class ListActivity extends AppCompatActivity {
 
         DBHandler dbhandler = new DBHandler(this);
 
-        // Generate 20 user objects with randomized name, description and boolean Follow.
-        for (int i = 0; i < 20; i++) {
-            Random random = new Random();
-            User userObject = new User();
-            userObject.Name = Integer.toString(random.nextInt(999999999));
-            userObject.Description = Integer.toString(random.nextInt(999999999));
-            userObject.Followed = random.nextBoolean();
+        userModels = dbhandler.getUsers();
 
-            // Id is a running number starting from 1
-            userObject.Id = i + 1;
+        // If no data in database, generate new data
+        if (userModels.size() == 0) {
+            // Generate 20 user objects with randomized name, description and boolean Follow.
+            for (int i = 0; i < 20; i++) {
+                Random random = new Random();
+                User userObject = new User();
+                userObject.Name = Integer.toString(random.nextInt(999999999));
+                userObject.Description = Integer.toString(random.nextInt(999999999));
+                userObject.Followed = random.nextBoolean();
 
-            userModels.add(userObject);
-            //dbhandler.insertUser(userObject);
+                // Id is a running number starting from 1
+                userObject.Id = i + 1;
 
+                userModels.add(userObject);
+                dbhandler.insertUser(userObject);
+            }
         }
 
         RecyclerView recyclerView = findViewById(R.id.ListRecyclerView);
@@ -45,7 +49,6 @@ public class ListActivity extends AppCompatActivity {
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(userModels);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
     }
 }

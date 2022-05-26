@@ -40,7 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close(); // When done, close the database connection
     }
 
-    public ArrayList<User> getUser() {
+    public ArrayList<User> getUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
         ArrayList<User> userArrayList = new ArrayList<User>();
         String query = "SELECT * FROM User";
@@ -65,5 +65,19 @@ public class DBHandler extends SQLiteOpenHelper {
         c.close();
         db.close();
         return userArrayList;
+    }
+
+    public void updateUser(User user) {
+
+        // Find user object in DB and update the value of "Followed" column
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query = "UPDATE User SET Followed = \""+ user.Followed +"\" " +
+                "WHERE Id = \""+ user.Id +"\"";
+
+        // Copy & paste UPDATE User SET Followed = "user.Followed" WHERE Id = "user.Id"
+
+        db.execSQL(query);
+        db.close();
     }
 }
