@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Practical">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".MessageGroup"
             android:exported="false" />
         <activity
@@ -23,8 +26,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
